@@ -28,7 +28,7 @@ Report counts per row vary slightly because the most recent reports do not yet h
 **Key findings**
 
 - Misses are punished harder than beats are rewarded: the average 1-day drop after a miss (−2.18%) is more than double the average gain after a beat (+0.83%).
-- The direction of the surprise matters, but the size does not seem to: an earlier version of this backtest found a near-zero correlation (about 0.03) between surprise size and price change.
+- The direction of the surprise matters, but the size does not seem to: the correlation between surprise size and price change is close to zero (0.034 after 1 and 3 days, 0.028 after 5 days).
 
 ### The advice rule
 
@@ -76,6 +76,7 @@ Running the notebook creates a `data/` folder next to it, which the dashboard re
 
 ```
 data/
+├── earnings_raw.csv           # raw earnings history collected in step 1
 ├── full_backtest.csv          # every backtested report with 1/3/5-day reactions
 ├── fresh_earnings.csv         # reports from the last 3 days, with their signal
 ├── company_performance.csv    # average 5-day reaction per company
@@ -94,7 +95,11 @@ All market data (earnings dates, EPS estimates, reported EPS and prices) comes f
 
 1. Upload `earnings_analysis.ipynb` and turn **Internet** on in the session options.
 2. Run all cells (about 30 minutes in total, mostly waiting on `yfinance`).
-3. The notebook writes the data files to `data/` and can test the dashboard in its last cell.
+3. The notebook writes the data files to `data/`.
+4. To test the dashboard in the last cell, first download the app script into the notebook:
+   ```
+   !wget -q https://raw.githubusercontent.com/faten20/earnings-report-alert/main/earnings_app.py -O earnings_app.py
+   ```
 
 ### Locally
 
